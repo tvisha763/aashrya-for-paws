@@ -1,0 +1,92 @@
+{% extends 'main.html' %}
+
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+{% for message in messages %}
+<div class="alert mt-3 alert-danger alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+
+   
+   <div class="shelters">
+      <h3>Manage Your Shelters</h3>
+      <div class="cards" style="margin:auto;">
+    {% for shelter in shelters %}
+      <div class="shelterCard" style="width: 18rem; background-color: #393D3F; color: white; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); margin: 20px;  display: inline-block; vertical-align: top;">
+         <div class="card-body">
+         <h5 class="card-title" style="display: inline-block; ">{{shelter.name}}</h5>
+         <form action="{% url 'deleteShelter' %}" method="get" style="display: inline-block; float: right;">
+            <input type="hidden" value="{{shelter.id}}" name="shelter_id">
+            <button type="submit" class="btn btn-danger" style="display: inline-block; ">delete</button>
+        </form>
+         
+         </div>
+      </div>
+       
+       
+       <br>
+       <br>
+    {% endfor %}
+   </div>
+   </div>
+
+   <div class="dogs">
+      <h3>Manage Your Dogs</h3>
+      {% for dog in dogs %}
+      {% if dog.status == 1 %}
+      <div class="card shadow-sm" style="width: 18rem; display: inline-block; margin: 50px;">
+        <img src="{{ dog.image.url }}" class="card-img-top" alt="...">
+        <div class="card-body text-center">
+          <h5 class="card-title">{{ dog.name }}
+
+            
+          </h5>
+          {% if dog.urgency == 1 %}
+          <h6 style="color: red;">Urgent</h6>
+      {% endif %}
+      {% if dog.urgency == 2 %}
+          <h6 style="color: rgb(219, 219, 12);">Moderately urgent</h6>
+      {% endif %}
+      {% if dog.urgency == 3 %}
+          <h6 style="color: green;">Not urgent</h6>
+      {% endif %}
+          <p class="card-text">{{ dog.description }}</p>
+          <a href="{% url 'dogDetails' dog.id %}" class="btn btn-primary" style="display: block;" >View</a>
+          <form action="{% url 'adopted' %}" method="get" style="margin: 10px; display: inline-block;">
+            <input type="hidden" value="{{dog.id}}" name="dog_id">
+            <button type="submit" class="btn btn-success">Adopted</button>
+        </form>
+        <form action="{% url 'euthanized' %}" method="get" style="margin: 10px; display: inline-block;">
+         <input type="hidden" value="{{dog.id}}" name="dog_id">
+         <button type="submit" class="btn btn-danger">Euthanized</button>
+         </form>
+        </div>
+      </div>
+
+  
+      {% endif %}
+  {% endfor %}
+   </div>
+   
+   <div class="donations">
+      <h3>Manage Your Donations</h3>
+    {% for donation in donations %}
+      <div class="donationCard" style="width: 18rem; background-color: #C6C5B9; color: #546A7B; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); margin: 20px;  display: inline-block; vertical-align: top;">
+         <div class="card-body">
+         <h5 class="card-title"> {{donation.item}}</h5>
+         <p class="card-text">condition/expiration date: {{donation.condition}}</p>
+         <p class="card-text">pickup address: {{donation.address}}</p>
+         <p class="card-text">pickup time: {{donation.time_range}}</p>
+         <form action="{% url 'donated' %}" method="get">
+            <input type="hidden" value="{{donation.id}}" name="id">
+            <button type="submit" class="btn btn-success">donated</button>
+        </form>
+        
+         </div>
+      </div>
+    {% endfor %}
+   </div>
+    
+{% endblock %}

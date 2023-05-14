@@ -1,0 +1,55 @@
+{% extends 'main.html' %}
+
+{% block title %}Find Resources{% endblock %}
+{% block content %}
+{% for message in messages %}
+<div class="alert mt-3 alert-danger alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+    <center>
+    <div class="city" style="background-color: white; margin:auto; width: 70%; padding: 30px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); margin-bottom: 50px;">
+        <form action="{% url 'findShelter' %}" method="post">
+            {% csrf_token %}
+            <input type="text" class="form-control" id="city" placeholder="city" name="city" style="display: inline-block; width: 60%; ">
+            <button class="btn btn-dark" type="submit">submit</button>
+        </form>
+    </div>
+    <div class="saves">
+        <h3>Shelters</h3>
+        <div class="cards" style="margin:auto;"></div>
+        {% for shelter in shelters %}
+          
+        <div class="saveCard" style="width: 18rem; background-color: white; color: #62929E; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); margin: 20px;  display: inline-block; vertical-align: top;">
+             <div class="card-body">
+             <h5 class="card-title">{{shelter.name}}</h5>
+             <p class="card-text">{{shelter.additional_info}}</p>
+             <a href="{{save.Shelter.email}}" class="card-link">{{shelter.email}}</a>
+             <p class="card-text">{{shelter.phone}}</p>
+             <p class="card-text">{{shelter.address}}</p>
+             <a href="{% url 'shelterDogs' shelter.id %}" class="btn btn-primary" style="display: block;">See dogs</a>
+             </div>
+          </div>
+          
+        {% endfor %} 
+       </div>
+    
+    </div>
+    <div class="donations">
+        <h3>Donations</h3>
+    {% for donation in donations %}
+      <div class="donationCard" style="width: 18rem; background-color: #C6C5B9; color: #546A7B; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); margin: 20px;  display: inline-block; vertical-align: top;">
+         <div class="card-body">
+         <h5 class="card-title"> {{donation.item}}</h5>
+         <p class="card-text">condition/expiration date: {{donation.condition}}</p>
+         <p class="card-text">pickup address: {{donation.address}}</p>
+         <p class="card-text">pickup time: {{donation.time_range}}</p>
+         </div>
+      </div>
+    {% endfor %}
+    
+    </div>
+    
+    </center>
+{% endblock %}

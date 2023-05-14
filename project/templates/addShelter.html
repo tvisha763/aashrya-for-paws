@@ -1,0 +1,28 @@
+{% extends 'main.html' %}
+
+{% block title %}Add Your Shelter{% endblock %}
+{% block content %}
+
+{% for message in messages %}
+
+<div class="alert mt-3 alert-warning alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+<center>
+
+    <div class="addShelter" style="background-color: #546A7B; width: 75%; margin: auto; padding: 30px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+        <form action="{% url 'addShelter' %}" method="post">
+            {% csrf_token %}
+            <input type="text" class="form-control" id="name" placeholder="name" name="name" style="width: 70%; margin: 10px;">
+            <input type="email" class="form-control" id="email" placeholder="email" name="email" style="width: 70%; margin: 10px;">
+            <input type="tel" class="form-control" id="phone" placeholder="phone number" name="phone"style="width: 70%; margin: 10px;">
+            <input type="street-address" class="form-control" id="address" placeholder="street address" name="address" autocomplete="street-address" style="width: 70%; margin: 10px;">
+            <input type="text" class="form-control" id="city" placeholder="city" name="city" style="width: 70%; margin: 10px;">
+            <textarea class="form-control" name="info" placeholder="additional information" id="info" style="width: 70%; margin: 10px;"></textarea>
+            <button type="submit" class="btn btn-dark">submit</button>
+        </form>
+    </div>
+</center>
+{% endblock %}

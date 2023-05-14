@@ -1,0 +1,34 @@
+{% extends 'main.html' %}
+
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+{% for message in messages %}
+<div class="alert mt-3 alert-danger alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+<center>
+
+    <div class="addDog" style="background-color: #546A7B; width: 75%; margin: auto; padding: 30px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+        <form action="{% url 'addDog' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <select class="form-select" placeholder="shelter" name="shelter" id="shelter" required style="width: 70%; margin: 10px;">
+                <option value="" selected>shelter</option>
+                {% for shelter in shelters %}
+                    <option value="{{shelter.name}}">{{shelter.name}}</option>
+                {% endfor %}
+              </select>
+            <input type="file" class="form-control" id="image" placeholder="image" name="image" style="width: 70%; margin: 10px;" accept="image/*" required>
+            <input type="text" class="form-control" id="name" placeholder="name" name="name" style="width: 70%; margin: 10px;">
+            <select class="form-select" name="urgency" id="urgency" required style="width: 70%; margin: 10px;">
+                <option value="1">Urgent</option>
+                <option value="2">Needs to be adopted soon</option>
+                <option value="3" selected>Not urgent</option>
+              </select>
+            <textarea class="form-control" name="description" placeholder="additional information" id="description" style="width: 70%; margin: 10px;"></textarea>
+            <button type="submit" class="btn btn-dark">submit</button>
+        </form>
+    </div>
+</center>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'main.html' %}
+
+{% block title %}{{dog.name}}{% endblock %}
+{% block content %}
+{% for message in messages %}
+<div class="alert mt-3 alert-danger alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+    
+{% endfor %}
+<div class="container my-5">
+	<div class="row justify-content-center">
+		<div class="card col-12 shadow-sm">
+			<div class="card-body container">
+				<div class="row justify-content-center">
+					<div class="col-6 card-title text-center">
+						<h3>{{ dog.name }}</h3>
+					</div>
+					<div class="col-6"></div>
+				</div>
+				<div class="row justify-content-center mb-3">
+					<img class="col-md-6 art-img" src="{{ dog.image.url }}"></img>
+					<div class="col-md-6 fs-5">
+						<div class="container">
+							<div class="row text-center">
+								{% if dog.urgency == 1 %}
+								<div class="col-12 text-center mb-4">
+									<span class="text-success" style="color: red;">Urgent</span>
+								</div>
+								{% elif dog.urgency == 2 %}
+								<div class="col-12 text-center mb-4">
+									<span class="text-success" style="color: rgb(219, 219, 12);">Moderately urgent</span>
+								</div>
+								{% else %}
+								<div class="col-12 text-center mb-4">
+									<span class="text-success" style="color: green;">Not urgent</span>
+								</div>
+								{% endif %}
+								<div class="col-12" style="font-size: 0.95em;">
+									<h5>Description</h5>
+									<p>{{ dog.description }}</p>
+								</div>
+                                <div class="col-12" style="font-size: 0.95em;">
+									<h5>Shelter Details</h5>
+									<p>{{ shelter.name }}</p>
+                                    <p>{{ shelter.email }}</p>
+                                    <p>{{ shelter.phone }}</p>
+                                    <p>{{ shelter.address }}</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

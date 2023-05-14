@@ -1,0 +1,25 @@
+{% extends 'main.html' %}
+
+{% block title %}DOnate{% endblock %}
+{% block content %}
+{% for message in messages %}
+<div class="alert mt-3 alert-danger alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+<center>
+    <div class="donate" style="background-color: #62929E; width: 75%; margin: auto; padding: 30px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+        <form action="{% url 'donate' %}" method="post">
+            {% csrf_token %}
+            <input type="text" class="form-control" id="item" placeholder="item" name="item" style="width: 70%; margin: 10px;">
+            <input type="text" class="form-control" id="cond" placeholder="condition/expiration date" name="cond" style="width: 70%; margin: 10px;">
+            <input type="text" class="form-control" id="time" placeholder="pickup time" name="time" style="width: 70%; margin: 10px;">
+            <input type="text" class="form-control" id="address" placeholder="pickup address" name="address" style="width: 70%; margin: 10px;">
+            <input type="text" class="form-control" id="city" placeholder="city" name="city" style="width: 70%; margin: 10px;">
+            <button type="submit" class="btn btn-dark">submit</button>
+        </form>
+    </div>
+</center>
+    
+{% endblock %}

@@ -1,0 +1,68 @@
+html{
+    background-color:#C6C5B9;
+    background-size: cover;
+}
+
+.navbar{
+    min-height: 50px;
+    padding: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+main{
+    padding-bottom: 30px;
+    padding-top: 40px;
+    background-color:#C6C5B9;
+}
+
+.saves{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: auto;
+    background-color: #62929E;
+    width: 95%;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.saves h3{
+    color: white;
+}
+
+.shelters{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: auto;
+    background-color: #FDFDFF;
+    width: 95%;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.shelters h3{
+    color: #393D3F;
+}
+
+.donations{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: auto;
+    background-color: #546A7B;
+    width: 95%;
+    padding: 20px;
+}
+
+.donations h3{
+    color: #C6C5B9;
+}
+
+
+.dogs{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: auto;
+    background-color: #84b4da;
+    width: 95%;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.dogs h3{
+    color: #ffffff;
+}

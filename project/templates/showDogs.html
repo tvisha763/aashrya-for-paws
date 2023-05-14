@@ -1,0 +1,43 @@
+{% extends 'main.html' %}
+
+{% block title %}{{shelter.name}}{% endblock %}
+{% block content %}
+{% for message in messages %}
+<div class="alert mt-3 alert-danger alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+    
+{% endfor %}
+<div class="addDog" style="background-color: #546A7B; width: 75%; margin: auto; padding: 30px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+    <center>
+    {% for dog in dogs %}
+        {% if dog.status == 1 %}
+        <div class="card shadow-sm" style="width: 18rem; display: inline-block; margin: 50px;">
+          <img src="{{ dog.image.url }}" class="card-img-top" alt="...">
+          <div class="card-body text-center">
+            <h5 class="card-title">{{ dog.name }}
+
+              
+            </h5>
+            {% if dog.urgency == 1 %}
+            <h6 style="color: red;">Urgent</h6>
+        {% endif %}
+        {% if dog.urgency == 2 %}
+            <h6 style="color: rgb(219, 219, 12);">Moderately urgent</h6>
+        {% endif %}
+        {% if dog.urgency == 3 %}
+            <h6 style="color: green;">Not urgent</h6>
+        {% endif %}
+            <p class="card-text">{{ dog.description }}</p>
+            <a href="{% url 'dogDetails' dog.id %}" class="btn btn-primary" style="display: block;">View</a>
+          </div>
+        </div>
+ 
+    
+        {% endif %}
+    {% endfor %}
+</center>
+   
+</div>
+{% endblock %}
