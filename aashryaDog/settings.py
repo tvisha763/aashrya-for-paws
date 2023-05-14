@@ -130,4 +130,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CSRF_TRUSTED_ORIGINS = ["https://aashrya_for-paws.herokuapp.com"]
+CSRF_TRUSTED_ORIGINS = ["https://aashrya-for-paws.herokuapp.com"]
