@@ -36,7 +36,7 @@
       <h3>Manage Your Dogs</h3>
       {% for dog in dogs %}
       {% if dog.status == 1 %}
-      <div class="card shadow-sm" style="width: 18rem; display: inline-block; margin: 50px;">
+      <div class="card shadow-sm" style="width: 18rem; display: inline-block; margin: 30px;">
         <img src="{{ dog.image.url }}" class="card-img-top" alt="...">
         <div class="card-body text-center">
           <h5 class="card-title">{{ dog.name }}

@@ -122,15 +122,15 @@ def login(request):
 
 def logout(request):
     if not request.session.get('logged_in') or not request.session.get('username'):
-        return redirect('/project/login')
+        return redirect('/login')
     else:
         request.session["username"] = None
         request.session['logged_in'] = False
-        return redirect('/project/login')
+        return redirect('/login')
 
 def dashboard(request):
     if not request.session.get('logged_in'):
-        return redirect('/project/login')
+        return redirect('/login')
     else:
         user = User.objects.get(username=request.session["username"])
         shelters = Shelter.objects.filter(user=user)
@@ -145,7 +145,7 @@ def dashboard(request):
 
 def addShelter(request):
     if not request.session.get('logged_in'):
-        return redirect('/project/login')
+        return redirect('/login')
     if request.method == "POST":
         user = User.objects.get(username=request.session["username"])
         name = request.POST.get("name")
@@ -164,7 +164,7 @@ def addShelter(request):
 
 def donate(request):
     if not request.session.get('logged_in'):
-        return redirect('/project/login')
+        return redirect('/login')
     if request.method == "POST":
         user = User.objects.get(username=request.session["username"])
         item = request.POST.get("item")
@@ -180,7 +180,7 @@ def donate(request):
 
 def findShelter(request):
     if not request.session.get('logged_in'):
-        return redirect('/project/login')
+        return redirect('/login')
     if request.method == "POST":
         city = request.POST.get("city").lower()
         shelters = Shelter.objects.filter(city=city)
@@ -199,7 +199,7 @@ def findShelter(request):
 
 def donated(request):   
     if not request.session.get('logged_in'):
-        return redirect('/project/login')
+        return redirect('/login')
     if request.method == "GET":
         donation = Donation.objects.get(id=request.GET.get('id'))
         donation.delete()
@@ -208,7 +208,7 @@ def donated(request):
 
 def addDog(request):
     if not request.session.get('logged_in'):
-        return redirect('/project/login')
+        return redirect('/login')
     if request.method == "POST":
         user = User.objects.get(username=request.session["username"])
         shelter = Shelter.objects.get(name=request.POST.get("shelter"), user=user)
@@ -238,7 +238,7 @@ def addDog(request):
     
 def shelterDogs(request, shelter_id):
     if not request.session.get('logged_in'):
-        return redirect('/project/login')
+        return redirect('/login')
     else:
         shelter = Shelter.objects.get(id=shelter_id)
         dogs = Dog.objects.filter(shelter=shelter)
@@ -251,7 +251,7 @@ def shelterDogs(request, shelter_id):
 
 def dogDetails(request, dog_id):
     if not request.session.get('logged_in'):
-        return redirect('/project/login')
+        return redirect('/login')
     else:
         dog = Dog.objects.get(id=dog_id)
         shelter = Shelter.objects.get(id = dog.shelter.id)
@@ -263,7 +263,7 @@ def dogDetails(request, dog_id):
     
 def deleteShelter(request):   
     if not request.session.get('logged_in'):
-        return redirect('/project/login')
+        return redirect('/login')
     if request.method == "GET":
         shelter = Shelter.objects.get(id=request.GET.get('shelter_id'))
         shelter.delete()
@@ -272,7 +272,7 @@ def deleteShelter(request):
 
 def adopted(request):
     if not request.session.get('logged_in'):
-        return redirect('/project/login')
+        return redirect('/login')
     if request.method == "GET":
         dog = Dog.objects.get(id=request.GET.get('dog_id'))
         adoption = Adoption(dog=dog)
@@ -283,7 +283,7 @@ def adopted(request):
 
 def euthanized(request):
     if not request.session.get('logged_in'):
-        return redirect('/project/login')
+        return redirect('/login')
     if request.method == "GET":
         dog = Dog.objects.get(id=request.GET.get('dog_id'))
         euthanization = Euthanization(dog=dog)
